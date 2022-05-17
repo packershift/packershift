@@ -11,11 +11,7 @@ from django.urls import reverse
 from packershift.users.forms import UserAdminChangeForm
 from packershift.users.models import User
 from packershift.users.tests.factories import UserFactory
-from packershift.users.views import (
-    UserRedirectView,
-    UserUpdateView,
-    user_detail_view,
-)
+from packershift.users.views import UserRedirectView, UserUpdateView, user_detail_view
 
 pytestmark = pytest.mark.django_db
 
