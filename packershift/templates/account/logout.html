@@ -5,6 +5,10 @@
 {% block head_title %}{% translate "Sign Out" %}{% endblock %}
 
 {% block content %}
+{% load static %}
+<div class="text-center my-3">
+    <img src="{% static 'images/logo.png' %}" alt="logo" width="100">
+</div>
 
 <div class="container-fluid ">
   <div class=" no-pdding login-box">
@@ -28,8 +32,7 @@
               </div>
               <div class="col-sm-7">
                 <ul>
-                  <li><i class="fa fa-facebook-f"></i></li>
-                  <li><i class="fa fa-twitter"></i></li>
+                  <li><i class="fa fa-github"></i></li>
                 </ul>
               </div>
             </div>

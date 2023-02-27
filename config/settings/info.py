@@ -1,0 +1,12 @@
+AUTHOR = "Packershift"
+COPYRIGHT = "Copyright Packershift © 2022"
+LICENSE = "BSD-3-Clause license"
+VERSION = "1.0.0"
+DOWNLOAD_URL = "https://github.com/packershift/packershift/releases/tag/%s" % VERSION
+MAINTAINER = "jbanimineni"
+EMAIL = "hello@packershift.io"
+STATUS = "basic"
+REPO_URL = "https://github.com/packershift/packershift"
+AUTHOR_URL = "https://packershift.io"
+RELEASES = "https://api.github.com/repos/packershift/packershift/releases"
+SUPPORT_URL = "https://github.com/packershift/packershift/issues"
