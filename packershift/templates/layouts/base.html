@@ -1,0 +1,65 @@
+{% load static i18n %}<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+  <meta charset="utf-8">
+  <meta content="ie=edge" http-equiv="x-ua-compatible">
+  <title>{% block title %}Packershift{% endblock title %}</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="OpenSource Cloud-Native Developer's Hub" name="description">
+  <meta content="PackerShift" name="author">
+
+  <link href="{% static 'images/favicons/favicon.ico' %}" rel="icon">
+
+  {% block css %}
+  <!-- Your stuff: Third-party CSS libraries go here -->
+
+  <!-- This file stores project-specific CSS -->
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'font-awesome/css/font-awesome.css' %}" rel="stylesheet">
+
+  <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+  <link href="{% static 'css/base-style.css' %}" rel="stylesheet">
+  {% endblock %}
+
+  <!-- Le javascript
+  ================================================== -->
+  {# Placed at the top of the document so pages load faster with defer #}
+  {% block javascript %}
+
+  <script defer src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+  <script defer src="{% static 'js/popper.min.js' %}"></script>
+  <script defer src="{% static 'js/bootstrap.min.js' %}"></script>
+
+  {% endblock javascript %}
+
+</head>
+
+<body>
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-dismissible fade show {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">
+  {{ message }}
+  <button aria-label="Close" class="close" data-bs-dismiss="alert" type="button"></button>
+</div>
+{% endfor %}
+{% endif %}
+
+{% block content %}
+{% include "account/login.html" %}
+{% endblock content %}
+
+{% block modal %}{% endblock modal %}
+
+{% block inline_javascript %}
+{% comment %}
+Script tags with only code, no src (defer by default). To run
+with a "defer" so that you run inline code:
+<script>
+      window.addEventListener('DOMContentLoaded', () => {/* Run whatever you want */});
+</script>
+{% endcomment %}
+{% endblock inline_javascript %}
+</body>
+</html>

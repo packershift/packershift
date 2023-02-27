@@ -4,16 +4,48 @@
 
 {% block head_title %}{% translate "Sign Out" %}{% endblock %}
 
-{% block inner %}
-<h1>{% translate "Sign Out" %}</h1>
+{% block content %}
+{% load static %}
+<div class="text-center my-3">
+    <img src="{% static 'images/logo.png' %}" alt="logo" width="100">
+</div>
 
-<p>{% translate 'Are you sure you want to sign out?' %}</p>
+<div class="container-fluid ">
+  <div class=" no-pdding login-box">
+    <div class="row no-margin w-100 bklmj">
+      <div class="col-lg-6 col-md-6 log-det">
+        <h1>{% translate "Sign Out" %}</h1>
+        <div class="row no-margin past">
+          <p>{% translate 'Are you sure you want to sign out?' %}</p>
+        </div>
+        <form action="{% url 'account_logout' %}" method="post">
+          {% csrf_token %}
+          {% if redirect_field_value %}
+          <input name="{{ redirect_field_name }}" type="hidden" value="{{ redirect_field_value }}"/>
+          {% endif %}
+          <button class="btn btn-danger btn-round" type="submit">{% translate 'Sign Out' %}</button>
+        </form>
+        <br>
+            <div class="row linkoi">
+              <div class="col-sm-5">
+                <p>{% translate "Or login with" %}</p>
+              </div>
+              <div class="col-sm-7">
+                <ul>
+                  <li><i class="fa fa-github"></i></li>
+                </ul>
+              </div>
+            </div>
+      </div>
+      <div class="col-lg-6 col-md-6 box-de">
+        <div class="ditk-inf">
+          <h2 class="w-100">{% translate "Welcome Back" %}</h2>
+          <p>{% translate "Simply Sign In your account by" %} <br> {% translate "clicking the SignIn Button" %}</p>
+          <a class="btn btn-outline-light" href="{% url 'account_login' %}">{% translate "Sign In" %}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<form method="post" action="{% url 'account_logout' %}">
-  {% csrf_token %}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-  {% endif %}
-  <button class="btn btn-danger" type="submit">{% translate 'Sign Out' %}</button>
-</form>
 {% endblock %}

@@ -1,22 +1,56 @@
 {% extends "account/base.html" %}
 
+{% load widget_tweaks %}
 {% load i18n %}
-{% load crispy_forms_tags %}
 
 {% block head_title %}{% translate "Signup" %}{% endblock %}
 
-{% block inner %}
-<h1>{% translate "Sign Up" %}</h1>
+{% block content %}
+{% load static %}
+<div class="text-center my-3">
+    <img src="{% static 'images/logo.png' %}" alt="logo" width="100">
+</div>
 
-<p>{% blocktranslate %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktranslate %}</p>
+<div class="container-fluid ">
+  <div class=" no-pdding login-box">
+    <div class="row no-margin w-100 bklmj">
+      <div class="col-lg-6 col-md-6 log-det">
+        <h2>{% translate "Sign Up" %}</h2>
+        <div class="row no-margin past">
+          <p>{% translate "Already have an account? Then please" %} <a href="{{ login_url }}">{% translate "Sign In" %}</a></p>
+        </div>
+        <form action="{% url 'account_signup' %}" class="signup" id="signup_form" method="post">
+          {% csrf_token %}
+          <div class="text-box-cont">
+            <div class="input-group mb-3">
+              {{ form.email|add_class:'form-control' }}
+            </div>
+            <div class="input-group mb-3">
+              {{ form.username|add_class:'form-control' }}
+            </div>
+            <div class="input-group mb-3">
+              {{ form.password1|add_class:'form-control' }}
+            </div>
+            <div class="input-group mb-3">
+              {{ form.password2|add_class:'form-control' }}
+            </div>
+            <div class="right-bkij mb-3">
+              <button class="btn btn-success btn-round" type="submit">{% translate "Sign Up" %}</button>
+            </div>
+            <br>
+          </div>
+        </form>
 
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-  {% csrf_token %}
-  {{ form|crispy }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <button class="btn btn-primary" type="submit">{% translate "Sign Up" %} &raquo;</button>
-</form>
+      </div>
+      <div class="col-lg-6 col-md-6 box-de">
+        <div class="ditk-inf">
+          <h2 class="w-100">{% translate "Welcome Back" %}</h2>
+          <p>{% translate "Simply login your account by" %} <br> {% translate "clicking the Signin Button" %}</p>
+          <a class="btn btn-outline-light" href="{% url 'account_login' %}">{% translate "Sign In" %}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock %}
